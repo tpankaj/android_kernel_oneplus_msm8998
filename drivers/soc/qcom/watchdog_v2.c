@@ -632,7 +632,8 @@ static void configure_bark_dump(struct msm_watchdog_data *wdog_dd)
 				pr_err("cpu %d reg dump setup failed\n", cpu);
 		}
 
-		register_scan_dump(wdog_dd);
+		register_scan_dump(wdog_dd);        
+		kfree(cpu_buf);
 	}
 
 	return;
