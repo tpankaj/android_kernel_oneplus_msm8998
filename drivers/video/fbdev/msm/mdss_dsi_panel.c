@@ -3268,6 +3268,7 @@ static int mdss_panel_parse_display_timings(struct device_node *np,
 	timings_np = of_get_child_by_name(np, "qcom,mdss-dsi-display-timings");
 	if (!timings_np) {
 		struct dsi_panel_timing pt;
+        pt.timing.name = NULL;
 		memset(&pt, 0, sizeof(struct dsi_panel_timing));
 
 		/*
@@ -3281,6 +3282,7 @@ static int mdss_panel_parse_display_timings(struct device_node *np,
 					panel_data, true);
 			rc = mdss_dsi_panel_timing_switch(ctrl, &pt.timing);
 		}
+        kfree(pt.timing.name);
 		return rc;
 	}
 
